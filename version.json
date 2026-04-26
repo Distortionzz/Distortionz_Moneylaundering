@@ -1,0 +1,6 @@
+{
+    "resource": "distortionz_moneylaundering",
+    "version": "1.0.2",
+    "changelog": "Added player money-counting animation during laundering, ped clipboard animation, animation cleanup on finish/cancel/walk-away, updated Industrial Launderer location, and improved ped ground placement.",
+    "download": "https://github.com/YOUR_GITHUB/YOUR_REPO"
+}

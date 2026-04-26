@@ -1,0 +1,336 @@
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    background: transparent;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 75% 20%, rgba(255, 0, 72, 0.22), transparent 28%),
+        radial-gradient(circle at 20% 80%, rgba(255, 0, 72, 0.10), transparent 30%),
+        rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(4px);
+}
+
+.launder-card {
+    position: relative;
+    width: 440px;
+    padding: 24px;
+    color: #ffffff;
+    border-radius: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+        linear-gradient(145deg, rgba(15, 15, 22, 0.92), rgba(5, 5, 10, 0.86)),
+        radial-gradient(circle at top right, rgba(255, 0, 72, 0.20), transparent 34%);
+    box-shadow:
+        0 24px 80px rgba(0, 0, 0, 0.65),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+    animation: popIn 180ms ease-out;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.top-bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+    color: #ff2e61;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 0;
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.subtitle {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 13px;
+}
+
+.close-btn {
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 14px;
+    color: #ffffff;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.08);
+    transition: 150ms ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 46, 97, 0.30);
+}
+
+.balance-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 14px;
+    border-radius: 22px;
+    background:
+        linear-gradient(135deg, rgba(255, 46, 97, 0.22), rgba(255, 46, 97, 0.04)),
+        rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.label {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+#dirtyMoney {
+    margin: 6px 0 0;
+    font-size: 34px;
+    letter-spacing: -0.05em;
+}
+
+.pulse-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ff2e61, #9d002d);
+    box-shadow: 0 0 34px rgba(255, 46, 97, 0.35);
+}
+
+.pulse-icon span {
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.stat-card {
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.stat-card p {
+    margin: 0 0 7px;
+    color: rgba(255, 255, 255, 0.50);
+    font-size: 12px;
+}
+
+.stat-card strong {
+    font-size: 18px;
+}
+
+.input-panel {
+    padding: 16px;
+    margin-bottom: 14px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.input-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+#selectedAmount {
+    margin: 4px 0 0;
+    font-size: 25px;
+    letter-spacing: -0.04em;
+}
+
+.ghost-btn {
+    height: 36px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 46, 97, 0.45);
+    border-radius: 12px;
+    color: #ffffff;
+    font-weight: 800;
+    cursor: pointer;
+    background: rgba(255, 46, 97, 0.14);
+}
+
+.ghost-btn:hover {
+    background: rgba(255, 46, 97, 0.26);
+}
+
+#amountInput {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    outline: none;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 800;
+    background: rgba(0, 0, 0, 0.28);
+}
+
+#amountInput:focus {
+    border-color: rgba(255, 46, 97, 0.65);
+}
+
+#amountRange {
+    width: 100%;
+    accent-color: #ff2e61;
+}
+
+.hint {
+    margin: 10px 0 0;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 12px;
+}
+
+.summary-panel {
+    padding: 16px;
+    margin-bottom: 14px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    color: rgba(255, 255, 255, 0.70);
+    font-size: 14px;
+}
+
+.summary-row + .summary-row {
+    margin-top: 10px;
+}
+
+.summary-row strong {
+    color: #ffffff;
+}
+
+.summary-row.fee strong {
+    color: #ff6d8d;
+}
+
+.summary-row.total {
+    padding-top: 12px;
+    margin-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.summary-row.total strong {
+    color: #58ff9c;
+}
+
+.warning-box {
+    padding: 13px 14px;
+    margin-bottom: 14px;
+    border-radius: 16px;
+    background: rgba(255, 175, 46, 0.09);
+    border: 1px solid rgba(255, 175, 46, 0.16);
+}
+
+.warning-box strong {
+    color: #ffca75;
+    font-size: 13px;
+}
+
+.warning-box p {
+    margin: 5px 0 0;
+    color: rgba(255, 255, 255, 0.56);
+    font-size: 12px;
+    line-height: 1.35;
+}
+
+.start-btn {
+    width: 100%;
+    height: 52px;
+    border: 0;
+    border-radius: 17px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 900;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff2e61, #a30030);
+    box-shadow: 0 14px 34px rgba(255, 46, 97, 0.28);
+    transition: 150ms ease;
+}
+
+.start-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 40px rgba(255, 46, 97, 0.36);
+}
+
+.start-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.error-text {
+    min-height: 18px;
+    margin: 12px 0 0;
+    color: #ff6d8d;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+}

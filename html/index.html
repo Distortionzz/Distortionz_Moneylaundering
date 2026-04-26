@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Distortionz Money Laundering</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="app" class="hidden">
+        <div class="overlay"></div>
+
+        <main class="launder-card">
+            <section class="top-bar">
+                <div>
+                    <p class="eyebrow">Distortionz Underground</p>
+                    <h1>Money Laundering</h1>
+                    <p id="locationName" class="subtitle">Unknown Location</p>
+                </div>
+
+                <button id="closeBtn" class="close-btn">×</button>
+            </section>
+
+            <section class="balance-panel">
+                <div>
+                    <p class="label">Dirty Money Available</p>
+                    <h2 id="dirtyMoney">$0</h2>
+                </div>
+
+                <div class="pulse-icon">
+                    <span>$</span>
+                </div>
+            </section>
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <p>Clean Rate</p>
+                    <strong id="cleanRate">0%</strong>
+                </div>
+
+                <div class="stat-card">
+                    <p>Fee Rate</p>
+                    <strong id="feeRate">0%</strong>
+                </div>
+
+                <div class="stat-card">
+                    <p>Minimum</p>
+                    <strong id="minAmount">$0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <p>Max Per Wash</p>
+                    <strong id="maxAmount">$0</strong>
+                </div>
+            </section>
+
+            <section class="input-panel">
+                <div class="input-header">
+                    <div>
+                        <p class="label">Amount To Clean</p>
+                        <h3 id="selectedAmount">$0</h3>
+                    </div>
+
+                    <button id="maxBtn" class="ghost-btn">Max</button>
+                </div>
+
+                <input id="amountInput" type="number" min="0" value="0" />
+
+                <input id="amountRange" type="range" min="0" max="0" value="0" />
+
+                <p id="maxCleanableText" class="hint">You can clean up to $0 right now.</p>
+            </section>
+
+            <section class="summary-panel">
+                <div class="summary-row">
+                    <span>Dirty money submitted</span>
+                    <strong id="summaryDirty">$0</strong>
+                </div>
+
+                <div class="summary-row fee">
+                    <span>Laundering fee</span>
+                    <strong id="summaryFee">-$0</strong>
+                </div>
+
+                <div class="summary-row total">
+                    <span>You receive clean cash</span>
+                    <strong id="summaryClean">$0</strong>
+                </div>
+            </section>
+
+            <section class="warning-box">
+                <strong>Risk Notice</strong>
+                <p>Large washes may attract attention. Stay near the contact until the process finishes.</p>
+            </section>
+
+            <button id="startBtn" class="start-btn">
+                Start Laundering
+            </button>
+
+            <p id="errorText" class="error-text"></p>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
