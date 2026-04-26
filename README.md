@@ -1,9 +1,3 @@
-
----
-
-# `distortionz_moneylaundering/README.md`
-
-```md
 # 💸 distortionz_moneylaundering
 
 Premium money laundering system for FiveM Qbox/Ox servers.
@@ -21,6 +15,7 @@ This resource gives players an immersive laundering process instead of a simple 
 ## ✨ Features
 
 ### 🖥️ Premium NUI Dashboard
+
 - Shows dirty money balance
 - Shows clean rate
 - Shows laundering fee
@@ -34,6 +29,7 @@ This resource gives players an immersive laundering process instead of a simple 
 - Red glow accents
 
 ### 💰 Money Laundering
+
 - Converts `black_money` into clean cash
 - Configurable clean rate
 - Configurable fee percentage
@@ -42,40 +38,42 @@ This resource gives players an immersive laundering process instead of a simple 
 - Configurable cooldown
 
 ### 🎬 Animations
+
 - Player uses money-counting / money-handling animation
 - Laundering ped uses clipboard animation
-- Animations stop on:
-  - Completion
-  - Cancellation
-  - Walk-away
-  - Resource stop
+- Animations stop on completion, cancellation, walk-away, and resource stop
 
 ### 🧍 Laundering Contact
+
 - Configurable ped model
 - Configurable ped location
-- Configurable scenario
-- ox_target interaction
-- Optional blip
+- Configurable ped scenario
+- `ox_target` interaction
+- Optional map blip
 
 ### 🚨 Police Risk
+
 - Configurable police alert chance
 - Police-only alert blip
 - Job-based police filtering
 - Anonymous laundering alert
 
 ### 🔔 Notifications
+
 - Uses `distortionz_notify` if running
 - Falls back to `ox_lib` notifications
 
 ### 🧩 Compatibility
+
 - Qbox compatible
 - QBCore fallback support
 - Ox compatible
-- ox_lib
-- ox_target
-- ox_inventory
+- `ox_lib`
+- `ox_target`
+- `ox_inventory`
 
 ### 🌐 Version Checking
+
 - GitHub `version.json` support
 - Configurable update URL
 - Console update messages
