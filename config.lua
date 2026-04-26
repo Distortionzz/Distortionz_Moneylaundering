@@ -7,13 +7,9 @@ Config.CurrentVersion = '1.0.2'
 
 Config.VersionCheck = {
     enabled = true,
-
-    -- Change this to your real GitHub raw version.json URL when uploaded.
-    url = 'https://raw.githubusercontent.com/YOUR_GITHUB/YOUR_REPO/main/distortionz_moneylaundering/version.json',
-
+    url = 'https://raw.githubusercontent.com/Distortionzz/Distortionz_Moneylaundering/main/version.json',
     checkOnStart = true
 }
-
 Config.Notify = {
     title = 'Money Laundering',
     useDistortionzNotify = true

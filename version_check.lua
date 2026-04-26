@@ -1,84 +1,90 @@
-local function PrintVersionMessage(message)
-    print(('[%s] %s'):format(Config.ResourceName, message))
+local function trimVersion(version)
+    if not version then return '0.0.0' end
+    version = tostring(version):gsub('^v', ''):gsub('^V', '')
+    return version
 end
 
-local function ParseVersion(version)
-    local major, minor, patch = tostring(version):match('v?(%d+)%.(%d+)%.(%d+)')
-
-    return {
-        major = tonumber(major) or 0,
-        minor = tonumber(minor) or 0,
-        patch = tonumber(patch) or 0
-    }
+local function splitVersion(version)
+    local parts = {}
+    for part in trimVersion(version):gmatch('[^.]+') do
+        parts[#parts + 1] = tonumber(part) or 0
+    end
+    return parts
 end
 
-local function IsRemoteNewer(localVersion, remoteVersion)
-    local localParsed = ParseVersion(localVersion)
-    local remoteParsed = ParseVersion(remoteVersion)
+local function isVersionNewer(remote, current)
+    local r = splitVersion(remote)
+    local c = splitVersion(current)
 
-    if remoteParsed.major > localParsed.major then return true end
-    if remoteParsed.major < localParsed.major then return false end
+    local maxParts = math.max(#r, #c)
+    for i = 1, maxParts do
+        local rv = r[i] or 0
+        local cv = c[i] or 0
 
-    if remoteParsed.minor > localParsed.minor then return true end
-    if remoteParsed.minor < localParsed.minor then return false end
-
-    if remoteParsed.patch > localParsed.patch then return true end
+        if rv > cv then
+            return true
+        elseif rv < cv then
+            return false
+        end
+    end
 
     return false
 end
 
-local function RunVersionCheck()
+local function versionCheck()
     if not Config.VersionCheck or not Config.VersionCheck.enabled then
         return
     end
 
-    if not Config.VersionCheck.url or Config.VersionCheck.url == '' then
-        PrintVersionMessage('Version check skipped: no version URL configured.')
+    local resourceName = GetCurrentResourceName()
+    local currentVersion = Config.CurrentVersion or GetResourceMetadata(resourceName, 'version', 0) or '0.0.0'
+    local versionUrl = Config.VersionCheck.url
+
+    if not versionUrl or versionUrl == '' then
+        print(('^6[%s]^7 ^1Version check failed:^7 missing version URL.'):format(resourceName))
         return
     end
 
-    PerformHttpRequest(Config.VersionCheck.url, function(statusCode, response)
-        if statusCode ~= 200 or not response then
-            PrintVersionMessage(('Version check failed. HTTP status: %s'):format(statusCode))
+    PerformHttpRequest(versionUrl, function(statusCode, response)
+        if statusCode ~= 200 then
+            print(('^6[%s]^7 ^1Version check failed.^7 HTTP status: ^1%s^7'):format(resourceName, statusCode or 'unknown'))
             return
         end
 
-        local ok, data = pcall(json.decode, response)
-
-        if not ok or not data then
-            PrintVersionMessage('Version check failed: invalid version.json.')
+        if not response or response == '' then
+            print(('^6[%s]^7 ^1Version check failed:^7 empty response body.'):format(resourceName))
             return
         end
 
-        local remoteVersion = data.version
-
-        if not remoteVersion then
-            PrintVersionMessage('Version check failed: version missing from version.json.')
+        local success, data = pcall(json.decode, response)
+        if not success or not data then
+            print(('^6[%s]^7 ^1Version check failed:^7 invalid JSON response.'):format(resourceName))
             return
         end
 
-        if IsRemoteNewer(Config.CurrentVersion, remoteVersion) then
-            PrintVersionMessage('====================================================')
-            PrintVersionMessage(('Update available: %s -> %s'):format(Config.CurrentVersion, remoteVersion))
+        local latestVersion = data.version or data.latest or '0.0.0'
+        local changelog = data.changelog or 'No changelog provided.'
+        local download = data.download or 'No download URL provided.'
 
-            if data.changelog then
-                PrintVersionMessage(('Changelog: %s'):format(data.changelog))
-            end
-
-            if data.download then
-                PrintVersionMessage(('Download: %s'):format(data.download))
-            end
-
-            PrintVersionMessage('====================================================')
+        if isVersionNewer(latestVersion, currentVersion) then
+            print(('^6[%s]^7 ^1Outdated version detected!^7 Current: ^1v%s^7 | Latest: ^2v%s^7'):format(
+                resourceName, currentVersion, latestVersion
+            ))
+            print(('^6[%s]^7 ^1Please update this resource.^7'):format(resourceName))
+            print(('^6[%s]^7 ^3Changelog:^7 %s'):format(resourceName, changelog))
+            print(('^6[%s]^7 ^5Download:^7 %s'):format(resourceName, download))
         else
-            PrintVersionMessage(('You are running the latest version: %s'):format(Config.CurrentVersion))
+            print(('^6[%s]^7 ^2You are running the latest version.^7 v%s'):format(
+                resourceName, currentVersion
+            ))
         end
     end, 'GET')
 end
 
 CreateThread(function()
+    Wait(2000)
+
     if Config.VersionCheck and Config.VersionCheck.checkOnStart then
-        Wait(2500)
-        RunVersionCheck()
+        versionCheck()
     end
 end)
