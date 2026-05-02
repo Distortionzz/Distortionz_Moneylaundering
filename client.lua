@@ -300,12 +300,23 @@ local function SpawnLocationPed(location, index)
         false
     )
 
+    if not ped or ped == 0 or not DoesEntityExist(ped) then
+        DebugPrint(('Failed to create laundering ped at location index %s'):format(index))
+        SetModelAsNoLongerNeeded(model)
+        return
+    end
+
     SetEntityAsMissionEntity(ped, true, true)
     PlaceObjectOnGroundProperly(ped)
     SetBlockingOfNonTemporaryEvents(ped, true)
     SetPedCanRagdoll(ped, false)
     SetEntityInvincible(ped, true)
     FreezeEntityPosition(ped, true)
+
+    -- Protect this scripted ped from distortionz_robped
+    Entity(ped).state:set('distortionz_protected_ped', true, true)
+    Entity(ped).state:set('distortionz_contact_ped', true, true)
+    Entity(ped).state:set('distortionz_launder_ped', true, true)
 
     if location.scenario and location.scenario ~= '' then
         TaskStartScenarioInPlace(ped, location.scenario, 0, true)
