@@ -1,86 +1,54 @@
-# 💸 distortionz_moneylaundering
+# Distortionz Money Laundering
 
-Premium money laundering system for FiveM Qbox/Ox servers.
+> Premium dirty money cleaning system for Qbox/FiveM — laundering NUI dashboard, fee preview, money-counting animation, police alerts, cooldowns.
 
-`distortionz_moneylaundering` is part of the **Distortionz illegal job ecosystem**. It allows players to clean dirty money earned from illegal jobs, such as assassin contracts, into regular clean cash with configurable fees, cooldowns, animations, police risk, and a premium NUI dashboard.
-
----
-
-## 📌 Overview
-
-This resource gives players an immersive laundering process instead of a simple item conversion. Players visit a laundering contact, open a premium NUI dashboard, view their dirty money balance, preview fees and payouts, start the cleaning process, wait through an animated progress action, and receive clean cash.
+![FiveM](https://img.shields.io/badge/FiveM-cerulean-yellow?style=flat-square&labelColor=181b20)
+![Qbox](https://img.shields.io/badge/Qbox-required-red?style=flat-square&labelColor=dfb317)
+![License](https://img.shields.io/badge/License-MIT-brightgreen?style=flat-square)
+![Version](https://img.shields.io/github/v/release/Distortionzz/Distortionz_Moneylaundering?style=flat-square&color=d4aa62&label=version)
 
 ---
 
-## ✨ Features
+## Overview
 
-### 🖥️ Premium NUI Dashboard
+Underground laundromat for converting marked/dirty bills to clean cash. Players visit a contact ped, enter the amount they want to launder, see a live fee preview + clean payout, and watch a money-counting animation while the contact processes the deposit.
 
-- Shows dirty money balance
-- Shows clean rate
-- Shows laundering fee
-- Shows minimum amount
-- Shows maximum amount per wash
-- Shows max cleanable amount
-- Live payout preview
-- Slider and number input
-- Max button
-- Dark transparent Distortionz style
-- Red glow accents
+## Features
 
-### 💰 Money Laundering
+- Premium laundering NUI with dirty money balance + fee preview
+- Live clean cash payout calculation
+- Money-counting animation during processing
+- Ped clipboard animation
+- Configurable fee tiers and rates
+- Police alert chance
+- Per-player cooldowns
+- Protected ped flagging
 
-- Converts `black_money` into clean cash
-- Configurable clean rate
-- Configurable fee percentage
-- Configurable min and max amounts
-- Configurable process time
-- Configurable cooldown
+## Dependencies
 
-### 🎬 Animations
+| Resource | Required | Purpose |
+|---|---|---|
+| `qbx_core` | yes | Player data, money |
+| `ox_lib` | yes | Callbacks, notify fallback |
+| `ox_target` | yes | Contact ped interaction |
+| `ox_inventory` | yes | Dirty money item handling |
+| `distortionz_notify` | optional | Branded notifications |
 
-- Player uses money-counting / money-handling animation
-- Laundering ped uses clipboard animation
-- Animations stop on completion, cancellation, walk-away, and resource stop
+## Installation
 
-### 🧍 Laundering Contact
+```cfg
+ensure distortionz_moneylaundering
+```
 
-- Configurable ped model
-- Configurable ped location
-- Configurable ped scenario
-- `ox_target` interaction
-- Optional map blip
+## Configuration
 
-### 🚨 Police Risk
+See [`config.lua`](config.lua) for ped location, fee rates, max launder amounts, cooldowns, and police alert thresholds.
 
-- Configurable police alert chance
-- Police-only alert blip
-- Job-based police filtering
-- Anonymous laundering alert
+## Credits
 
-### 🔔 Notifications
+- **Author:** Distortionz
+- **Framework:** [Qbox Project](https://github.com/Qbox-project)
 
-- Uses `distortionz_notify` if running
-- Falls back to `ox_lib` notifications
+## License
 
-### 🧩 Compatibility
-
-- Qbox compatible
-- QBCore fallback support
-- Ox compatible
-- `ox_lib`
-- `ox_target`
-- `ox_inventory`
-
-### 🌐 Version Checking
-
-- GitHub `version.json` support
-- Configurable update URL
-- Console update messages
-
----
-
-## 📁 Resource Name
-
-```txt
-distortionz_moneylaundering
+MIT — see [LICENSE](LICENSE).

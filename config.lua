@@ -3,7 +3,7 @@ Config = {}
 Config.Debug = false
 
 Config.ResourceName = 'distortionz_moneylaundering'
-Config.CurrentVersion = '1.0.2'
+Config.CurrentVersion = '1.0.3'
 
 Config.VersionCheck = {
     enabled = true,

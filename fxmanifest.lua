@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'Distortionz'
 description 'Distortionz Money Laundering - Dirty money cleaning system for Qbox/Ox servers'
-version '1.0.2'
+version '1.0.3'
 
 lua54 'yes'
 

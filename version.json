@@ -1,6 +1,6 @@
 {
     "resource": "distortionz_moneylaundering",
-    "version": "1.0.2",
-    "changelog": "Added premium laundering NUI dashboard, dirty money balance display, fee preview, clean cash payout preview, money-counting animation, ped clipboard animation, police alerts, cooldowns, and improved ped placement.",
+    "version": "1.0.3",
+    "changelog": "v1.0.3 — Added README.md with overview, features, dependencies, installation, and credits. Standardized GitHub repo metadata (badges, dynamic version pull, MIT license, Qbox required). v1.0.2 — Added premium laundering NUI dashboard, dirty money balance display, fee preview, clean cash payout preview, money-counting animation, ped clipboard animation, police alerts, cooldowns, and improved ped placement.",
     "download": "https://github.com/Distortionzz/Distortionz_Moneylaundering"
 }
