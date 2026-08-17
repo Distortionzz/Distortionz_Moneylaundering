@@ -519,5 +519,10 @@ end)
 
 CreateThread(function()
     Wait(1000)
-    print(('[%s] Server callbacks loaded successfully.'):format(Config.ResourceName))
+    print(('^5[%s]^7 ^2v%s loaded — locations=%d cleanRate=%d%%^7'):format(
+        Config.ResourceName,
+        Config.CurrentVersion,
+        #Config.Locations,
+        Config.Laundering.cleanRate
+    ))
 end)
